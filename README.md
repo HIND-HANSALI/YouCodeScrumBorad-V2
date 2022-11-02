@@ -1,1 +1,1 @@
-# YouCodeScrumBorad-V2-main
+# YouCodeScrumBorad-V2
