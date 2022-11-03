@@ -30,7 +30,7 @@
                 from tasks 
                 INNER JOIN types on types.id = tasks.type_id 
                 INNER JOIN priorities on tasks.priority_id = priorities.id
-                INNER JOIN statuses ON tasks.status_id=statuses.id  WHERE status_id=$status";
+                INNER JOIN statuses ON tasks.status_id=statuses.id WHERE status_id=$status";
         $result = mysqli_query($conn,$sql);
 
        
@@ -71,6 +71,9 @@
             ?>
 
 	<!-- update modal -->
+    <!DOCTYPE html>
+   <html lang="en" >
+    <body>
 	<div class="modal fade" id="update<?=$row["id"]?>">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -120,6 +123,7 @@
 									<option value="3">Done</option>
 								</select>
 							</div>
+
 							<div class="mb-3">
 								<label class="form-label">Date</label>
                                 
@@ -133,7 +137,9 @@
 					</div>
 					<div class="modal-footer">
 						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</button>
+						
+                        <button type="button" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn2">Delete</button>
+                        <button type="submit" name="delete" id="task-delete-btn" hidden></button>
 						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</button>
 						<!-- <button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button> -->
 					</div>
@@ -148,6 +154,7 @@
 
         // echo "Fetch all tasks";
     }
+    
     
     function saveTask()
     {
@@ -219,3 +226,7 @@
     }
 
 ?>
+
+<script src="scripts.js"></script>
+</body>
+</html>
