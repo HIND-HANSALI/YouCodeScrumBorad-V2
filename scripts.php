@@ -9,7 +9,7 @@
     if(isset($_POST['update']))      updateTask();
     if(isset($_POST['delete']))      deleteTask();
 
-
+    //fonction counter des tasks 
     function counter($contStatus){
         global $conn;
         $sql= "SELECT * FROM tasks where status_id= $contStatus";
@@ -18,8 +18,7 @@
         echo count($res);
 
     }
-    
-
+    //fonction d'affichage
     function getTasks($status)
     {
         //CODE HERE
@@ -69,7 +68,7 @@
             ';
 
             ?>
-
+    <!-- chaque boutton a sa propre modal qui affiche ces donnees dans ses input  -->
 	<!-- update modal -->
     <!DOCTYPE html>
    <html lang="en" >
@@ -84,6 +83,7 @@
 					</div>
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
+                            <!--hidden id-->
 							<input type="hidden" value="<?php echo $row["id"] ?>" name="idTask" id="task-id">
 							<div class="mb-3">
 								<label class="form-label">title</label>
@@ -138,8 +138,8 @@
 					<div class="modal-footer">
 						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
 						
-                        <button type="button" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn2">Delete</button>
-                        <button type="submit" name="delete" id="task-delete-btn" hidden></button>
+                        <!-- <button onclick="confirmDelete();" type="button" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn2">Delete</button> -->
+                        <button type="submit" name="delete" class="btn btn-danger task-action-btn" onclick="return confirm('do you really want to delete this task ?')" id="task-delete-btnn" >Delete</button>
 						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</button>
 						<!-- <button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button> -->
 					</div>
@@ -155,7 +155,7 @@
         // echo "Fetch all tasks";
     }
     
-    
+    //fonction d'ajout task
     function saveTask()
     {
         //CODE HERE
@@ -189,7 +189,7 @@
 		header('location: index.php');
     }
 
-  
+    //fonction modifier task
     function updateTask()
     {
 
@@ -213,6 +213,7 @@
 		header('location: index.php');
     }
 
+    //fonction supprimer task
     function deleteTask()
     {
         //CODE HERE
